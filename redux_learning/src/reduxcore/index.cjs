@@ -1,26 +1,33 @@
 const redux = require("redux");
 const createStore = redux.createStore;
 
-const BUY_CAKE = "BUY_CAKE";
 
 
-function buycake() {
+
+function increment() {
   return {
-    type: BUY_CAKE,
-    info: "First redux action",
+    type: "increment"
   };
 }
 
+function decrement(){
+  return{
+    type:"decrement"
+  }
+}
+
+
 const initialState = {
-  numberoFCakes: 10,
+  initialNumber: 10,
 };
 
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case BUY_CAKE:
-      return { ...state, numberoFCakes: state.numberoFCakes - 1 };
-
+    case "increment":
+      return { ...state, initialNumber: state.initialNumber+1};
+    case "decrement":
+      return{...state,initialNumber:state.initialNumber-1}
     default:
       return state;
   }
@@ -34,6 +41,12 @@ console.log("Initial state:", store.getState());
 store.subscribe(() => console.log("Updated state:", store.getState()));
 
 
-store.dispatch(buycake());
-store.dispatch(buycake());
-store.dispatch(buycake());
+store.dispatch(increment());
+store.dispatch(increment());
+store.dispatch(increment());
+
+
+ store. dispatch(decrement())
+ store. dispatch(decrement())
+ store. dispatch(decrement())
+ store. dispatch(decrement())
