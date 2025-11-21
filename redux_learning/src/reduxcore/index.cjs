@@ -3,13 +3,13 @@ const createStore = redux.createStore;
 
 
 
-
+// action creator for increment
 function increment() {
   return {
     type: "increment"
   };
 }
-
+//   action creator for decrement 
 function decrement(){
   return{
     type:"decrement"
