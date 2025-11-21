@@ -1,7 +1,10 @@
 const { act } = require("react");
 const redux = require("redux");
+const reduxlogger=require('redux-logger')
 const createStore = redux.createStore;
 const combinedreducer=redux.combineReducers
+const applyMiddleware= redux.applyMiddleware
+const logger=reduxlogger.createLogger()
 
 const initialSum={
     initialSums:0
@@ -39,7 +42,7 @@ const sumreducer=(state=initialSum,action)=>{
 }
 
 const decrreducer=(state=initialdecr,action)=>{
-     {   
+       
 
         switch(action.type)
         {
@@ -49,7 +52,7 @@ const decrreducer=(state=initialdecr,action)=>{
                 default:
                     return state
         }
-    }
+    
 
 }
   const  rootreducers=combinedreducer({
@@ -57,10 +60,10 @@ const decrreducer=(state=initialdecr,action)=>{
      subtraction:decrreducer
 
   })
-const store=createStore(rootreducers)
+const store=createStore(rootreducers,applyMiddleware(logger))
 
 console.log("initial state",store.getState())
-store.subscribe(()=>console.log("updated state",store.getState()))
+store.subscribe(()=>{})
   store.dispatch(increment())
   store.dispatch(increment())
   store.dispatch(increment())
